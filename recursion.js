@@ -53,10 +53,20 @@
 
 // console.log(splitter('this is split by spaces', ' '));
 
-function splitter(str, separator){
-  if(str.indexOf(separator) === -1){
-    return [str];
+// function splitter(str, separator){
+//   if(str.indexOf(separator) === -1){
+//     return [str];
+//   }
+//   return [str.slice(0, str.indexOf(separator)), ...splitter(str.slice(str.indexOf(separator)+1, str.length), separator)];
+// }
+// console.log(splitter('ae/i/ou d dwjow/hi', '/'));
+
+function binaryRep(num) {
+  if (num < 1) {
+    return '';
   }
-  return [str.slice(0, str.indexOf(separator)), ...splitter(str.slice(str.indexOf(separator)+1, str.length), separator)];
+  return binaryRep(Math.floor(num/2)) + num % 2
 }
-console.log(splitter('ae/i/ou d dwjow/hi', '/'));
+
+
+console.log(binaryRep(100))
