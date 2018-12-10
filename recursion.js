@@ -11,3 +11,15 @@ function countSheep(n){
 }
 
 countSheep(3);
+
+function arrayDouble(arr) {
+  if (!arr.length) {
+    return [];
+  }
+  
+  return [arr[0] * 2, ...arrayDouble(arr.slice(1))]
+}
+
+const arr1 = [1, 2, 3]
+
+console.log(arrayDouble(arr1))
