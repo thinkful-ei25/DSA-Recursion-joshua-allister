@@ -90,3 +90,38 @@
 // }
 
 // console.log(fibonacci(7))
+
+/*
+take first letter, add every possibility of remaining
+ eats, east, esat, ests, etas, etsa
+ aets, aest, ates, atse, aset, aste
+*/
+
+// function anagrams(word, prefix){
+//   if (prefix > word.length){
+//     return;
+//   }
+
+
+
+// }
+
+function anagrams(word){
+  let grams = [];
+  if(word.length === 1){
+    grams.push(word);
+    return grams;
+  }
+  for(let i = 0; i < word.length; i++){
+    let first = word[i];
+    let rest = word.slice(0, i) + word.slice(i+1);
+    let inner = anagrams(rest);
+    for(let j = 0; j < inner.length; j++){
+      grams.push(first + inner[j]);
+    }
+    
+  }
+  return grams;
+}
+
+console.log(anagrams('east'));
