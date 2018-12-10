@@ -106,22 +106,77 @@ take first letter, add every possibility of remaining
 
 // }
 
-function anagrams(word){
-  let grams = [];
-  if(word.length === 1){
-    grams.push(word);
-    return grams;
-  }
-  for(let i = 0; i < word.length; i++){
-    let first = word[i];
-    let rest = word.slice(0, i) + word.slice(i+1);
-    let inner = anagrams(rest);
-    for(let j = 0; j < inner.length; j++){
-      grams.push(first + inner[j]);
-    }
+// function anagrams(word){
+//   let grams = [];
+//   if(word.length === 1){
+//     grams.push(word);
+//     return grams;
+//   }
+//   for(let i = 0; i < word.length; i++){
+//     let first = word[i];
+//     let rest = word.slice(0, i) + word.slice(i+1);
+//     let inner = anagrams(rest);
+//     for(let j = 0; j < inner.length; j++){
+//       grams.push(first + inner[j]);
+//     }
+    
+//   }
+//   return grams;
+// }
+
+// console.log(anagrams('east'));
+
+const hierarchy = [
+  {name: 'Zuckerberg', parent: null},
+  {name: 'Schroepfer', parent: 'Zuckerberg'},
+  {name: 'Bosworth', parent: 'Schroepfer'},
+  {name: 'Steve', parent: 'Bosworth'},
+  {name: 'Kyle', parent: 'Bosworth'},
+  {name: 'Andra', parent: 'Bosworth'},
+  {name: 'Zhao', parent: 'Schroepfer'},
+  {name: 'Richie', parent: 'Zhao'},
+  {name: 'Sofia', parent: 'Zhao'},
+  {name: 'Jen', parent: 'Zhao'},
+  {name: 'Schrage', parent: 'Zuckerberg'},
+  {name: 'VanDyck', parent: 'Schrage'},
+  {name: 'Sabrina', parent:' VanDyck'},
+  {name: 'Michelle', parent:' VanDyck'},
+  {name: 'Josh', parent:' VanDyck'},
+  {name: 'Swain', parent: 'Schrage'},
+  {name: 'Blanch', parent: 'Swain'},
+  {name: 'Tom', parent: 'Swain'},
+  {name: 'Joe', parent: 'Swain'}
+  ]
+
+  function makeTree(hierarchy, parent = null) {
+    let node = {}
+    hierarchy
+      .filter(item => item.parent === parent)
+      .forEach(item => node[item.name] = makeTree(hierarchy, item.name))
+    return node;
     
   }
-  return grams;
-}
 
-console.log(anagrams('east'));
+  console.log(JSON.stringify(makeTree(hierarchy), undefined, 2));
+
+
+// Zuckerberg
+//     'Schroepfer'
+//         'Bosworth'
+//             'Steve'
+//             'Kyle'
+//             'Andra'
+//         'Zhao'
+//             Richie
+//             Sofia
+//             Jen
+//     'Schrage'
+//        ' VanDyck'
+//             Sabrina
+//             Michelle
+//             Josh
+//         Swain
+//             Blanch
+//             Tom
+//             Joe
+    
