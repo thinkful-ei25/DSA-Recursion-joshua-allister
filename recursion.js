@@ -61,12 +61,21 @@
 // }
 // console.log(splitter('ae/i/ou d dwjow/hi', '/'));
 
-function binaryRep(num) {
-  if (num < 1) {
-    return '';
+// function binaryRep(num) {
+//   if (num < 1) {
+//     return '';
+//   }
+//   return binaryRep(Math.floor(num/2)) + num % 2
+// }
+
+
+// console.log(binaryRep(100))
+
+function factorial(num){
+  if(num === 0){
+    return 1;
   }
-  return binaryRep(Math.floor(num/2)) + num % 2
+  return num * factorial(num-1);
 }
 
-
-console.log(binaryRep(100))
+console.log(factorial(2));
